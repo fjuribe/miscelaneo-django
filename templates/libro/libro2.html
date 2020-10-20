@@ -1,0 +1,8 @@
+<h1>lista de libros</h1>
+
+
+<ul>
+    {% for libro in lista_libros %}
+    <li>{{libro.titulo}} - {{libro.fecha}} - {{libro.visitas}}</li>
+    {% endfor%}
+</ul>
