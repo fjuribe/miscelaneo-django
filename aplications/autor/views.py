@@ -67,7 +67,7 @@ class Autor_por_id(APIView):
 #http://localhost:8000/buscar_autor2?id=2
 class Autor_por_id2(APIView):
     def get(self,request,format=None):
-        pk=request.GET.get('id')
+        pk=request.GET.get('id','')
         try:
             autor=Autor.objects.get(id=pk)
         except Autor.DoesNotExist:
@@ -110,3 +110,34 @@ class AgregarAutor(APIView):
             edad=edad
         )
         return HttpResponse(JsonResponse({"success":"agregado exitosamente","autor":agregar.get_autor()}),content_type="application/json", status=200)
+
+##########################################################################################3333
+# class GestionCalendario(APIView):
+#     def post(self,request,format=None):
+#         start=None
+#         title=None
+#         color=[]
+#         actions=None
+#         draggable=None
+
+#         if 'start' in request.data:
+#             start=request.data['start']
+
+#         if 'title'  in request.data:
+#             title=request.data['title']
+
+#         if 'color' in request.data:
+#             color=request.data['color']
+#             for col in color:
+
+
+        
+        
+#         color=request.data['color']
+#         actions=request.data['actions']
+#         draggable=request.data['draggable']
+
+
+
+
+

@@ -4,12 +4,15 @@ from django.views import View
 from aplications.autor.models import Autor
 from django.db.models import Q
 from django.views.decorators.csrf import csrf_protect
+
+from .forms_persona import ContactoForm
+from .models import Persona
 from django.views.generic import (
 	ListView
 )
 
 
-from .models import Persona
+
 
 class ListAllEmpleados(ListView):
 	model=Autor
@@ -56,3 +59,36 @@ class AutorADD(View):
         
 		mensaje=f"su nombre es {nombre} {apellido}"
 		return HttpResponse(mensaje)
+
+
+# class Contacto(View):
+# 	submitted=False
+# 	template_name='persona/contacto.html'
+# 	def post(self,request,format=None):
+# 		form=ContactoForm(request.POST)
+# 		if form.is_valid():
+# 			cd=form.cleanned_data
+
+# 			return HttpResponseRedirect('/contacto?submitted=True')
+
+# 	def get(self,request,format=None):
+# 		form=ContactoForm()
+# 		if 'submitted' in request.GET:
+# 			submitted=True
+
+# 		return render(request,self.template_name,{'form':form,'submitted':submitted})
+
+def contact(request):
+    submitted = False
+    if request.method == 'POST':
+        form = ContactoForm(request.POST)
+        if form.is_valid():
+            cd = form.cleaned_data
+          # assert False
+            return HttpResponseRedirect('persona/contacto?submitted=True')
+    else:
+        form = ContactoForm()
+        if 'submitted' in request.GET:
+            submitted = True
+
+    return render(request,'persona/contacto.html',{'form': form, 'submitted': submitted})

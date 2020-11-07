@@ -8,6 +8,6 @@ urlpatterns = [
     path('agregar_autor/',views.AgregarAutor.as_view()),
     path('buscar_edad/<int:edad>',views.BuscarMenoresPorEdad.as_view()),
     path('buscar_autor/<int:pk>',views.Autor_por_id.as_view()),
-    path('buscar_autor2',views.Autor_por_id2.as_view()),
+    path('buscar_autor2/',views.Autor_por_id2.as_view()),
     path('buscar_autor3',views.Autor_por_id3.as_view()),
 ]
